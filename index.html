@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BarCode Maker | App Developed By Ganesh Agrawal</title>
+    <style>
+        html.body,div{
+            margin: 0;
+            padding: 0;
+        }
+        .userblock{
+            display: block;
+        }
+        .userblock #borderblock{
+            border: 1px solid black;
+            padding: 5mm;
+        }
+        input{
+            border: 1px solid blue;
+            padding: 10px 5px;
+        }
+        input[type='submit']{
+            background-color: white;
+            width: 100%;
+            font-weight: bold;
+            color: blue;
+        }
+        input[type='submit']:hover{
+            background-color: blue;
+            color: white;
+        }
+        .previewblock{
+            margin: 50px;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+        .previewblock #imgblock{
+            width: 38.10mm;
+            height: 21.20mm;
+            border: 0.1mm solid black;
+        }
+        #imgblock #barcode{
+            margin: 2mm;
+            max-width: 34.10mm;
+            max-height: 17.20mm;
+        }
+        #printbutton{
+            background-color: green;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .credit{
+            text-align: right;
+
+        }
+        .credit a{
+            text-decoration: none;
+            font-weight: bold;
+            color: chocolate;
+        }
+        .printblock{
+            display: none;
+        }
+        @media print{
+            @page{
+                size: A4;
+                margin: 0;
+            }
+            html,.div,body,.img,svg{
+                margin: 0;
+                padding: 0;
+            }
+            .userblock{
+                display: none;
+            }
+            .printblock{
+                display: block;
+                width: 200.5mm;
+                height: 275.6mm;
+                padding: 10.7mm 4.75mm;
+            }
+            .row{
+                clear: both;
+            }
+            .row .barcodeblock{
+                width: 38.10mm;
+                height: 21.20mm;
+                float: left;
+
+            }
+            #barcode{
+                margin: 2mm;
+                max-width: 34.10mm;
+                max-height: 17.20mm;
+            }
+            .row .colspace{
+                width: 2.5mm;
+                height: 21.20mm;
+                float: left;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--   User Display Block For Input Data -->
+    <div class="userblock">
+        <div id="borderblock">
+               <table>
+                   <tr>
+                       <td><label for="barcodeText">Barcode</label></td>
+                       <td><input type="text" id="barcodeText" name="barcodeText" placeholder="Barcode" required></td>
+                   </tr>
+                   <tr>
+                       <td><label for="barcodeText">Tree of Life Code</label></td>
+                       <td><input type="text" id="refText" name="refText" placeholder="Tree of Life Code" required></td>
+                   </tr>
+                   <tr>
+                       <td><label for="priceText">Price</label></td>
+                       <td><input type="text" id="priceText" name="priceText" placeholder="Price" required></td>
+                   </tr>
+                   <tr>
+                      <td></td>
+                       <td><input type="submit" name="submit" value="Submit" onclick="make()"></td>
+                   </tr>
+               </table>
+            <div class="previewblock" id="previewblock">
+                <div id="imgblock">
+                    <svg id="barcode"></svg>
+                </div>
+                <a href="#" id="printbutton" onclick="window.print()">Print</a>
+                <br><br>
+            </div>
+            <div class="credit">Developed By <a href="https://ganeshagrawal.com/">Ganesh Agrawal</a></div>
+        </div>
+    </div>
+
+<!--    Print Data Block For Printers -->
+    <div class="printblock">
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+        <div class="row">
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+            <div class="colspace"></div>
+            <div class="barcodeblock"><svg id="barcode"></svg></div>
+        </div>
+    </div>
+
+
+<!--    Script-->
+    <script src="JsBarcode.itf.min.js" type="text/javascript"></script>
+    <script>
+        function make(){
+            var barcodeText = document.getElementById('barcodeText').value;
+            var refText = document.getElementById('refText').value;
+            var priceText = document.getElementById('priceText').value;
+            if(barcodeText == '' || priceText == '' || refText == ''){
+                alert("Error");
+                return false;
+            }
+            if(barcodeText.length % 2 != 0){
+              barcodeText = '0' + barcodeText;
+            }
+            barcodeText = parseInt(barcodeText);
+            finalText = refText + '  ' + priceText;
+            JsBarcode("#barcode", barcodeText, {
+              width: 2,
+              height: 60,
+              margin: 0,
+              text: finalText,
+              textMargin: 2,
+              fontSize: 14,
+              textAlign: "center"
+            });
+            document.getElementById('previewblock').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
